@@ -13,8 +13,9 @@ module.exports = {
 
     //get one user
     async oneUser(req, res) {
+        console.log(req.params.userId)
         try {
-            const oneUser = await User.findOne({_id: req.params.UserId});
+            const oneUser = await User.findOne({_id: req.params.Id});
             if (!oneUser) {
                 return res.status(404).json({message: "no user with that ID"})
             }
@@ -45,7 +46,7 @@ module.exports = {
         try{
             const updatedU = await User.findOneAndUpdate(
                 {_id: req.params.userId},
-                {$addToSet: req.body },
+                {$set: req.body },
                 {new: true}
             );
 
