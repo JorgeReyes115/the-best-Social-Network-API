@@ -41,10 +41,11 @@ module.exports = {
 
 
     async updateUser(req, res) {
+        console.log(req.params.userId)
         try{
             const updatedU = await User.findOneAndUpdate(
-                {_id: req.params.id},
-                {$addToSet: {reactions:body} },
+                {_id: req.params.userId},
+                {$addToSet: req.body },
                 {new: true}
             );
 
